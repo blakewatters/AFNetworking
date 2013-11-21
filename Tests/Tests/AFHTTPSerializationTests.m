@@ -41,7 +41,7 @@
         XCTAssert([serializer.acceptableStatusCodes containsIndex:statusCode], @"Status code %@ should be acceptable", @(statusCode));
 
         NSError *error = nil;
-        [serializer validateResponse:response data:[@"text" dataUsingEncoding:NSUTF8StringEncoding] error:&error];
+        [serializer validateResponse:response data:[@"text" dataUsingEncoding:NSUTF8StringEncoding] request:nil error:&error];
 
         XCTAssertNil(error, @"Error handling status code %@", @(statusCode));
     }];
@@ -56,7 +56,7 @@
         XCTAssert(![serializer.acceptableStatusCodes containsIndex:statusCode], @"Status code %@ should not be acceptable", @(statusCode));
 
         NSError *error = nil;
-        [serializer validateResponse:response data:[@"text" dataUsingEncoding:NSUTF8StringEncoding] error:&error];
+        [serializer validateResponse:response data:[@"text" dataUsingEncoding:NSUTF8StringEncoding] request:nil error:&error];
 
         XCTAssertNotNil(error, @"Did not fail handling status code %@",@(statusCode));
     }];
